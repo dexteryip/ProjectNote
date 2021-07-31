@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-loading-spinner',
@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./loading-spinner.component.sass']
 })
 export class LoadingSpinnerComponent implements OnInit {
-  @Input() isLoading: boolean = true;
+  @Input() isLoading = new BehaviorSubject<boolean>(true);
   constructor() { }
 
   ngOnInit() {

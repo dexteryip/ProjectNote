@@ -1,0 +1,6 @@
+<app-loading-spinner [isLoading]="isLoading$">
+    <ng-container *ngFor="let noteId of noteIdList">
+        <app-note-detail [noteId]='noteId'></app-note-detail>
+    </ng-container>
+</app-loading-spinner>
+<button mat-button (click)="OnClickNew()">Add</button>

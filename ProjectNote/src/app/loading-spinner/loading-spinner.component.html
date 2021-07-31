@@ -1,8 +1,7 @@
-<div *ngIf="isLoading;else content">
+<div *ngIf="(isLoading|async) else content">
     <mat-spinner style="margin: 0 auto;" diameter="70"></mat-spinner>
     <p class="loading-text">loading...</p>
 </div>
 <ng-template #content>
     <ng-content></ng-content>
 </ng-template>
-<ng-container></ng-container>

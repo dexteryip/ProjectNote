@@ -5,7 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { NoteService } from 'src/services/NoteService';
 import { MatInputModule } from '@angular/material/input';
-import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module';
+import { LoadingSpinnerModule } from '../../loading-spinner/loading-spinner.module';
+import {MatButtonModule} from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { LoadingSpinnerModule } from '../loading-spinner/loading-spinner.module'
     MatCardModule,
     HttpClientModule,
     MatInputModule,
-    LoadingSpinnerModule
+    LoadingSpinnerModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [NoteService],
   exports: [NoteDetailComponent]

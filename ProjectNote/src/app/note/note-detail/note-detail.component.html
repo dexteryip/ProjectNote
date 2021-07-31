@@ -1,0 +1,28 @@
+<app-loading-spinner [isLoading]="isLoading$">
+    <mat-card>
+        <ng-container *ngIf="!isEditing; else editForm">
+            <ng-container *ngIf="(note$|async) as note">
+                <mat-card-title>{{note.Subject}}</mat-card-title>
+                <mat-card-subtitle>Created at {{note.CreatedDate}}</mat-card-subtitle>
+                <mat-card-content>
+                    {{note.Content}}
+                </mat-card-content>
+            </ng-container>
+        </ng-container>
+        <ng-template #editForm>
+            <mat-card-content>
+                <form [formGroup]="noteForm">
+                    <label for="subject">Subject: </label>
+                    <input id="subject" type="text" formControlName="Subject">
+                    <label for="content">Content: </label>
+                    <input id="content" type="text" formControlName="Content">
+                </form>
+            </mat-card-content>
+        </ng-template>
+        <mat-card-actions>
+            <button *ngIf="!isEditing" mat-button (click)="OnEditClick()">Edit</button>
+            <button *ngIf="isEditing" [disabled]="isLocked||!noteForm.valid" mat-button (click)="OnSaveClick()">Save</button>
+            <button *ngIf="isEditing&&noteId" [disabled]="isLocked" mat-button (click)="OnCancelClick()">Cancel</button>
+        </mat-card-actions>
+    </mat-card>
+</app-loading-spinner>

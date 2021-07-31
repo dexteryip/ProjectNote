@@ -3,17 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NoteDetailModule } from './note-detail/note-detail.module';
-import { LoadingSpinnerModule } from './loading-spinner/loading-spinner.module';
+import { NoteListModule } from './note/note-list/note-list.module';
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent
    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NoteDetailModule
+    NoteListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
