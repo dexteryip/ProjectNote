@@ -20,7 +20,7 @@ export class NoteService{
     }
     AddNote(Note:Note):Observable<Note>{
         let callUrl = this.noteUrl+'0';
-        return this.$http.post<HttpResponseBody<Note>>(this.noteUrl, Note).pipe(
+        return this.$http.post<HttpResponseBody<Note>>(callUrl, Note).pipe(
             map((result:HttpResponseBody<Note>)=>{
                 console.log("AddNote result:", result)
                 return result.payload

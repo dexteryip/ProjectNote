@@ -12,10 +12,21 @@
         <ng-template #editForm>
             <mat-card-content>
                 <form [formGroup]="noteForm">
-                    <label for="subject">Subject: </label>
-                    <input id="subject" type="text" formControlName="Subject">
-                    <label for="content">Content: </label>
-                    <input id="content" type="text" formControlName="Content">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Subject</mat-label>
+                        <input matInput formControlName="Subject" required>
+                        <mat-error *ngIf="noteForm.controls.Subject.hasError('required')">Please enter subject.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Content</mat-label>
+                        <textarea matInput formControlName="Content"></textarea>
+                    </mat-form-field>
+                    <!-- <label for="subject">Subject: </label>
+                    <input id="subject" type="text" formControlName="subject"> -->
+                    <!-- <label for="content">Content: </label>
+                    <input id="content" type="text" formControlName="content"> -->
+
                 </form>
             </mat-card-content>
         </ng-template>

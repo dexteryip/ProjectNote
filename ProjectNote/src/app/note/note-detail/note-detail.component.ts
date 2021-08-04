@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { filter, switchMap, tap } from 'rxjs/operators';
 import { Note } from 'src/model/note.model';
@@ -23,7 +23,7 @@ export class NoteDetailComponent implements OnInit {
   refreshNote$ = new BehaviorSubject<boolean>(true);
   isLoading$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private noteSvc: NoteService) { }
+  constructor(private noteSvc: NoteService, private formBuilder:FormBuilder) { }
 
   noteForm = new FormGroup({
     Subject: new FormControl('', Validators.required),
@@ -44,6 +44,10 @@ export class NoteDetailComponent implements OnInit {
         this.isLoading$.next(false)
       })
     )
+    this.noteForm = this.formBuilder.group({
+      Subject: [null, Validators.required],
+      Content: [null]
+    })
     if(this.noteId==="")
       this.isEditing = true;
   }
