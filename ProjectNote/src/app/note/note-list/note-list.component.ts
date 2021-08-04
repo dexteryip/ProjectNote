@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { NoteService } from 'src/services/NoteService';
+import { NoteService } from 'src/services/note.service';
 
 @Component({
   selector: 'app-note-list',

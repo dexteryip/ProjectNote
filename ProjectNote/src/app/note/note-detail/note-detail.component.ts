@@ -5,8 +5,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { Note } from 'src/model/Note';
-import { NoteService } from 'src/services/NoteService';
+import { Note } from 'src/model/note.model';
+import { NoteService } from 'src/services/note.service';
 
 @Component({
   selector: 'app-note-detail',
