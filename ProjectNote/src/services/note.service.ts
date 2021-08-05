@@ -15,6 +15,10 @@ export class NoteService{
         return this.$http.get<HttpResponseBody<Note>>(callUrl).pipe(
             map((result:HttpResponseBody<Note>)=>{
                 console.log("GetNote result:", result)
+                // empty values for old data
+                let ret = {...(new Note()), ...result.payload};
+                console.log("GetNote ret:", ret)
+                return ret
                 return result.payload
         }));
     }

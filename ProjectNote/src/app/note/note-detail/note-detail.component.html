@@ -2,7 +2,13 @@
     <mat-card>
         <ng-container *ngIf="!isEditing; else editForm">
             <ng-container *ngIf="(note$|async) as note">
-                <mat-card-title>{{note.Subject}}</mat-card-title>
+                <mat-card-title>
+                    <div class="title">
+                        <div>{{note.Subject}}</div>
+                        <div class="fill"></div>
+                        <div class="stage">{{getStageViewValue(note.Stage)}}</div>
+                    </div>
+                </mat-card-title>
                 <mat-card-subtitle>Created at {{note.CreatedDate}}</mat-card-subtitle>
                 <mat-card-content>
                     {{note.Content}}
@@ -22,6 +28,16 @@
                         <mat-label>Content</mat-label>
                         <textarea matInput formControlName="Content"></textarea>
                     </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Stage</mat-label>
+                        <mat-select formControlName="Stage">
+                            <mat-option *ngFor="let stage of StageOptionArray" [value]="stage.value">
+                                {{stage.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
                     <!-- <label for="subject">Subject: </label>
                     <input id="subject" type="text" formControlName="subject"> -->
                     <!-- <label for="content">Content: </label>

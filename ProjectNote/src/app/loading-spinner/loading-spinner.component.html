@@ -1,7 +1,12 @@
-<div *ngIf="(isLoading|async) else content">
-    <mat-spinner style="margin: 0 auto;" diameter="70"></mat-spinner>
-    <p class="loading-text">loading...</p>
+<div class="wrapper">
+    <div class="overlay" *ngIf="isLoading|async">
+        <div class="spinner-wrapper">
+            <mat-spinner style="margin: 0 auto;" diameter="70"></mat-spinner>
+            <p class="loading-text">loading...</p>
+        </div>
+    </div>
+
+    <div class="loaded-content">
+        <ng-content></ng-content>
+    </div>
 </div>
-<ng-template #content>
-    <ng-content></ng-content>
-</ng-template>

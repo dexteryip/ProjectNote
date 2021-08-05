@@ -9,7 +9,7 @@ import { LoadingSpinnerModule } from '../../loading-spinner/loading-spinner.modu
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [NoteDetailComponent],
@@ -21,7 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     LoadingSpinnerModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [NoteService],
   exports: [NoteDetailComponent]

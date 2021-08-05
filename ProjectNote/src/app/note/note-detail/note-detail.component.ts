@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { Note } from 'src/model/note.model';
+import { Note, StageOptionArray } from 'src/model/note.model';
 import { NoteService } from 'src/services/note.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { NoteService } from 'src/services/note.service';
   styleUrls: ['./note-detail.component.sass']
 })
 export class NoteDetailComponent implements OnInit {
+  readonly StageOptionArray = StageOptionArray
 
   @Input() noteId = '';
   note:Note=new Note();
@@ -25,10 +26,7 @@ export class NoteDetailComponent implements OnInit {
 
   constructor(private noteSvc: NoteService, private formBuilder:FormBuilder) { }
 
-  noteForm = new FormGroup({
-    Subject: new FormControl('', Validators.required),
-    Content: new FormControl('')
-  })
+  noteForm = new FormGroup({})
 
   public isEditing: boolean = false;
   public isLocked: boolean = false;
@@ -46,7 +44,8 @@ export class NoteDetailComponent implements OnInit {
     )
     this.noteForm = this.formBuilder.group({
       Subject: [null, Validators.required],
-      Content: [null]
+      Content: [null],
+      Stage: [null]
     })
     if(this.noteId==="")
       this.isEditing = true;
@@ -59,7 +58,11 @@ export class NoteDetailComponent implements OnInit {
     //   this.isLocked = false;
     // })
     // cached method to increase speed
-    this.noteForm.setValue({Subject:this.note.Subject,Content:this.note.Content});
+    this.noteForm.setValue({
+      Subject: this.note.Subject,
+      Content: this.note.Content,
+      Stage: this.note.Stage
+    });
     this.isEditing = true;
     this.isLocked = false;
     this.noteForm.enable();
@@ -94,5 +97,7 @@ export class NoteDetailComponent implements OnInit {
     this.isEditing = false;
     // this.refreshNote$.next(true);
   }
-
+  getStageViewValue(item:string){
+    return this.StageOptionArray.filter(x=>x.value==item)[0].viewValue
+  }
 }
